@@ -1,4 +1,4 @@
-// and the Grove LED Socket is connected to pin D4.
+// and the Grove LED Socket is connected to pin D7.
 
 /*macro definitions of PIR motion sensor pin and LED pin*/
 #define PIR_MOTION_SENSOR 4 //Use pin D4 to receive the signal from the module
@@ -15,17 +15,17 @@ void setup()
 
 void loop()
 {
-    if(isPeopleDetected())//if it detects the moving people?
+    if(isPeopleDetected())
     {
         digitalWrite(LED, HIGH);
         Serial.println("People detected");
-        delay(1000);
+        //delay(1000);
     }
     else
     {
         Serial.println("NO People detected");
         digitalWrite(LED, LOW);
-        delay(1000);
+        //delay(1000);
     }
 }
 
@@ -37,14 +37,14 @@ boolean isPeopleDetected()
 {
     int sensorValue = digitalRead(PIR_MOTION_SENSOR);
     Serial.println(sensorValue);
-    if(sensorValue == HIGH)//if the sensor value is HIGH?
+    if(sensorValue == HIGH)
     { 
         Serial.println(sensorValue);
-        return true;//yes,return true
+        return true;
     }
     else
     {
         Serial.println(sensorValue);
-        return false;//no,return false
+        return false;
     }
 }
