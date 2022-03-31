@@ -117,7 +117,8 @@ void setup() {
     client.println("Connection: close");
     client.println(); //end HTTP header
 
-    ////CODE FOR GET POST METHOD
+    //CODE FOR GET POST METHOD
+    //HTTP POST requests may change the server state.
     /*    
     client.print("GET " + PATH_NAME+ " HTTP/1.1\n");
     client.println("Host: "+String(server));
