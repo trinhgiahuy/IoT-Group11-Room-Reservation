@@ -27,3 +27,6 @@ If you're running 19.5.2 there is no need to update to 19.5.4, despite what the 
 
 Ref: [here](https://forum.arduino.cc/t/quest-to-get-wpa2-enterprise-working-on-the-atwinc1500-with-arduino/556245)
 
+[Customized WiFi101 library for the Adafruit Feather M0+ WINC1500](https://github.com/cicchiello/WiFi101_FM0_WINC1500_19.6.1)
+
+upgrade the ATWINC1500 (B version) from firmware version 19.4.4 to 19.6.1, and customize the WiFi101 library to expose the newly supported WPA2 Enterprise EAP (several flavors) authentication functionality.
