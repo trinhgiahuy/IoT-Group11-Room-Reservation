@@ -18,3 +18,12 @@ Check result: NOT PASSED
    version required by the library, you may experience
    issues or failures.
 ```
+
+From [Adafruit WINC1500 WiFi Shield for Arduino  Updating Firmware ], it states
+
+```
+If you're running 19.5.2 there is no need to update to 19.5.4, despite what the WiFi101 library says it should work just fine and you could brick your device by updating, it is not perfectly foolproof! Thanks :)
+```
+
+Ref: [here](https://forum.arduino.cc/t/quest-to-get-wpa2-enterprise-working-on-the-atwinc1500-with-arduino/556245)
+
