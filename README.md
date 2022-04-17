@@ -30,3 +30,15 @@ Ref: [here](https://forum.arduino.cc/t/quest-to-get-wpa2-enterprise-working-on-t
 [Customized WiFi101 library for the Adafruit Feather M0+ WINC1500](https://github.com/cicchiello/WiFi101_FM0_WINC1500_19.6.1)
 
 upgrade the ATWINC1500 (B version) from firmware version 19.4.4 to 19.6.1, and customize the WiFi101 library to expose the newly supported WPA2 Enterprise EAP (several flavors) authentication functionality.
+
+---
+### Set up as Access Point
+```
+         (dhcp)         bridge
+           ╱    wifi    ┌───────┐
+mobile-phone <~.~.~.~.> │(wlan0)│            
+                        │    br0│RPi
+      4G-Dongle <──────>|(eth1) │╲      
+           ╲    wired   └───────┘╱    
+         (dhcp)            192.168.66.1
+```
