@@ -27,6 +27,9 @@ void loop()
         digitalWrite(LED, LOW);
         //delay(1000);
     }
+
+    //Delay the output sample
+    delay(1000);
 }
 
 
