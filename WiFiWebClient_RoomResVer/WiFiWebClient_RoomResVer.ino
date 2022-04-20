@@ -29,8 +29,10 @@
 
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = SECRET_SSID;        // your network SSID (name)
+//const char ssid = "piiot1";
 char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
-int keyIndex = 0;            // your network key Index number (needed only for WEP)
+//const char* pass = "12345678";
+//int keyIndex = 0;            // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
 // if you don't want to use DNS (and reduce your sketch size)
@@ -54,6 +56,7 @@ void setup() {
   Serial.begin(9600);
   pinMode(PIR_MOTION_SENSOR, INPUT);
   pinMode(LED, OUTPUT);
+  
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -69,12 +72,17 @@ void setup() {
 
   // attempt to connect to WiFi network:
   Serial.println("Attempting to connect to Wifi network");
-  while (status != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED) {
     Serial.print("Attempting to connect to SSID: ");
     Serial.println(ssid);
+;
+    Serial.println(status);
+    Serial.println(WiFi.status());
+
+
     // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
     status = WiFi.begin(ssid, pass);
-
+    
     // wait 10 seconds for connection:
     delay(10000);
   }
