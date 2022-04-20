@@ -34,8 +34,9 @@ void setup() {
   M5.begin();             //Init M5StickC plus
   M5.IMU.Init();
   M5.Lcd.setRotation(3);
+  M5.Lcd.setTextSize(2);
   WiFi.begin(ssid, password); //Connect wifi and return connection status.
-  Serial.println("Attempting to connect to Wifi network");
+  M5.Lcd.println("Attempting to connect to Wifi network");
   int timeout_counter = 0;
   while (WiFi.status() != WL_CONNECTED) { //If the wifi connection fails.
     /*
@@ -51,7 +52,7 @@ void setup() {
       // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
     */
     delay(1000);
-    M5.lcd.print(".");
+    M5.Lcd.print(".");
 
     /*
       timeout_counter++;
@@ -62,6 +63,7 @@ void setup() {
     */
 
   }
+  M5.Lcd.fillScreen(BLACK);
   M5.lcd.print("Connected to wifi: ");
   M5.lcd.println(WiFi.SSID());
   //printWiFiStatus();
@@ -76,8 +78,7 @@ void setup() {
   pinMode(PIR_GROVE_PIN, INPUT);
   pinMode(LED_PIN, OUTPUT);
 
-  // check for the presence of the shield:
-  Serial.println("Checking for wifi hardware...");
+
   /*
     if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");
@@ -175,7 +176,7 @@ void printWiFiStatus() {
 }
 
 bool accelDetect(){  
-  M5.Lcd.setCursor(90, 90);
+  M5.Lcd.setCursor(120, 60);
   if(abs(accX-accX_old) > 0.05 || abs(accY-accY_old) > 0.05 || abs(accZ-accZ_old) > 0.05){
     M5.Lcd.print("1");
     return true;
