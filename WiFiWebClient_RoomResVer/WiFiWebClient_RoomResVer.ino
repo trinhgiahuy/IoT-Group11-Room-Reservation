@@ -40,8 +40,8 @@ int status = WL_IDLE_STATUS;
 IPAddress server(45,93,137,105);  // numeric IP for Google (no DNS)
 //char server[] = "www.reza.com";    // name address for Reza  (using DNS)
 
-String PATH_NAME = "";
-//String PATH_NAME = "/update-sensor";
+//String PATH_NAME = "";
+String PATH_NAME = "/update-sensor";
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server
