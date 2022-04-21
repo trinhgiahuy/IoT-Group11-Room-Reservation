@@ -1,6 +1,7 @@
 #include <M5StickCPlus.h>
 #include <WiFi.h>
-#include <HTTPClient.h>
+//#include <HTTPClient.h>
+//#include <WiFi101.h>
 
 #include "arduino_secrets.h"
 
@@ -14,9 +15,9 @@
 
 const char* ssid = "piiot1";
 const char* password = "12345678";
-const char* server = "https://reza1234.free.beeceptor.com/update-sensor";
-//IPAddress server(45,93,137,105);
-const char* PATH_NAME = "";
+//const char* server = "https://reza1234.free.beeceptor.com/update-sensor";
+IPAddress server(45,93,137,105);
+String PATH_NAME = "/update-sensor";
 
 float accX = 0.00F;
 float accY = 0.00F;
@@ -26,6 +27,10 @@ float accZ = 0.00F;
 const float accX_old = -1.01F;
 const float accY_old = -0.01F;
 const float accZ_old = 0.07F;
+
+WiFiClient client;
+//HTTPClient http;
+
 /* After M5StickC Plus is started or reset
   the program in the setUp () function will be run, and this part will only be run once.
 
@@ -103,10 +108,10 @@ void loop() {
   //if(M5.BtnA.wasPressed()){
 
 
-  M5.IMU.getAccelData(&accX, &accY, &accZ);
-  M5.Lcd.setTextSize(2);
-  M5.lcd.setCursor(0,100);
-  M5.lcd.printf(" %5.2f: %5.2f: %5.2f", abs(accX-accX_old), abs(accY-accY_old), abs(accZ-accZ_old));
+  //M5.IMU.getAccelData(&accX, &accY, &accZ);
+  //M5.Lcd.setTextSize(2);
+  //M5.lcd.setCursor(0,100);
+  //M5.lcd.printf(" %5.2f: %5.2f: %5.2f", abs(accX-accX_old), abs(accY-accY_old), abs(accZ-accZ_old));
    
   if(accelDetect()){
     //Delay 5s after open door
@@ -121,17 +126,25 @@ void loop() {
     M5.Lcd.setCursor(80, 60);
     M5.Lcd.printf("%3d", motionVal);
   
-    //--------------------Client code
-    HTTPClient http;
+    //--------------------Client code using HTTPClient
+    
+    
     String data = String(motionVal);
-    data = "?reserved=" + data;
-    String serverPath = server + data;      //https://reza1234.free.beeceptor.com/update-sensor?reserved=1
+    data = "?room=2&reserved=" + data;
+    //String serverPath = server + data;      //https://reza1234.free.beeceptor.com/update-sensor?reserved=1
   
     //Serial.println("http.begin(serverPath.cstr())");
-    http.begin(serverPath.c_str());
+    //http.begin(serverPath.c_str());
   
     // Send HTTP GET request
-    Serial.println("Send GET sensor data...");
+    //Serial.println("Send GET sensor data...");
+    
+    //CODE FOR GET REQUEST METHOD
+    client.print("GET " + PATH_NAME + data + " HTTP/1.1\n");      //"GET /update-sensor?room=2&resereved=0 HTTP/1.1"
+    client.println("Host: "+String(server));
+    client.println("Connection: close");
+    client.println(); //end HTTP header
+    /*
     int httpResponseCode = http.GET();
   
     if (httpResponseCode > 0) {
@@ -146,6 +159,9 @@ void loop() {
     }
     // Free resources
     http.end();
+    */
+    //TEST: Code for WiFICLient
+    
   }
 
   /*
@@ -176,12 +192,12 @@ void printWiFiStatus() {
 }
 
 bool accelDetect(){  
-  M5.Lcd.setCursor(120, 60);
+  //M5.Lcd.setCursor(120, 60);
   if(abs(accX-accX_old) > 0.05 || abs(accY-accY_old) > 0.05 || abs(accZ-accZ_old) > 0.05){
-    M5.Lcd.print("1");
+    //M5.Lcd.print("1");
     return true;
   }else{
-    M5.Lcd.print("0");
+    //M5.Lcd.print("0");
     return false;  
   }
 }
