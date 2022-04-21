@@ -69,7 +69,9 @@ void setup() {
 
   }
   M5.Lcd.fillScreen(BLACK);
-  M5.lcd.print("Connected to wifi: ");
+  M5.lcd.setCursor(30, 80);
+  M5.lcd.print("Connected to WiFi ");
+  M5.lcd.setCursor(80, 95);
   M5.lcd.println(WiFi.SSID());
   //printWiFiStatus();
 
@@ -138,7 +140,8 @@ void loop() {
   
     // Send HTTP GET request
     //Serial.println("Send GET sensor data...");
-    
+
+    //TEST: Code for WiFICLient
     //CODE FOR GET REQUEST METHOD
     client.print("GET " + PATH_NAME + data + " HTTP/1.1\n");      //"GET /update-sensor?room=2&resereved=0 HTTP/1.1"
     client.println("Host: "+String(server));
@@ -160,7 +163,7 @@ void loop() {
     // Free resources
     http.end();
     */
-    //TEST: Code for WiFICLient
+    
     
   }
 
