@@ -7,8 +7,8 @@ const path = require('path');
 // Connect to mysql database
 const host = 'localhost';
 const username = 'root';
-const password = 'Saigon12345';
-const database = 'IOT';
+const password = 'dHybTzxrCxaQSl20';
+const database = 'Iot';
 
 const mysql = require('mysql');
 
