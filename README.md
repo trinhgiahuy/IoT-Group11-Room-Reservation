@@ -2,10 +2,23 @@
 A Prototype task for Internet-Of-Thing course
 
 ---
+
+## [Not used] RPi 2 login
+
 passwd for pi: fin2019
 
 passwd for root: rass
 
+## [Access point] RPi 1 
+
+SSID information
+
+Pi hotspot name : piiot1
+
+Pi password: 12345678
+
+
+## WINC1500 WiFi shield
 ```
 WiFi101 firmware check.
 
@@ -31,7 +44,8 @@ Ref: [here](https://forum.arduino.cc/t/quest-to-get-wpa2-enterprise-working-on-t
 
 upgrade the ATWINC1500 (B version) from firmware version 19.4.4 to 19.6.1, and customize the WiFi101 library to expose the newly supported WPA2 Enterprise EAP (several flavors) authentication functionality.
 
----
+## References
+
 ### ~~Set up as Access Point~~
 
 ```
@@ -45,5 +59,3 @@ mobile-phone <~.~.~.~.> │(wlan0)│
 ```
 Follow this [instruction](https://snikt.net/blog/2019/06/22/building-an-lte-access-point-with-a-raspberry-pi/)
 
-## Pi hotspot name : piiot1
-## Pi password: 12345678
