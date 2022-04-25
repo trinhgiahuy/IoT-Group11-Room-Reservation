@@ -59,3 +59,7 @@ mobile-phone <~.~.~.~.> │(wlan0)│
 ```
 Follow this [instruction](https://snikt.net/blog/2019/06/22/building-an-lte-access-point-with-a-raspberry-pi/)
 
+### For more [Raspbian Buster - WiFi WPA2 enterprise broken?](https://forums.raspberrypi.com/viewtopic.php?t=247310)
+
+(Not test) Solution to this: [Pi4 (Buster) connect WPA2 enterprise WiFi (AP: Cisco MR33)](https://iceburn.medium.com/raspberry-pi-connected-to-wifi-of-wpa2-enterprise-ddd5a40c0b07) using Meraki Authentication
+
