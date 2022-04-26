@@ -1,6 +1,7 @@
 const bodyparser = require('body-parser');
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 //const cors = require('cors');
 //const { handleRequest } = require('./routes');
 
@@ -8,7 +9,7 @@ const path = require('path');
 const host = 'localhost';
 const username = 'root';
 const password = 'dHybTzxrCxaQSl20';
-const database = 'Iot';
+const database = 'iot';
 
 const mysql = require('mysql');
 
@@ -34,20 +35,12 @@ app.set("view engine", "ejs")
 app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());
 
-app.post('/book', function(request, response){
+app.get('/', function(request, response){
     // code here
     // a json request
 
-    //books.add(data);
 
-    const { method } = request;
-
-    // Method is not get request
-    if(method.toUpperCase() !== 'GET'){
-        response.statusCode(405)
-    }
-
-    else if (method.toUpperCase() === 'GET'){
+    if (request.reversed !== undefined || request.room !== undefined){
         // status contains 1 and 0, represent available or unavailable
         const status = request.reversed;
         // Room number
@@ -105,11 +98,19 @@ app.post('/book', function(request, response){
                 }
             });
         });
-
-        frontpage();
-        response.statusCode(200);
     }
-    
+
+    fs.readFile(path.resolve('index.html'), function(error, htmlPage) {
+        if (error) {
+          response.writeHead(404);
+          response.write('An error occured: ', error);
+        } 
+        else {
+          response.writeHead(200, { 'Content-Type': 'text/html' });
+          response.write(htmlPage);
+        }
+        response.end();
+    });
     
 });
 
@@ -142,6 +143,6 @@ const frontpage = () => {
 };
 
 // The server
-var server = app.listen(port, function(){
+app.listen(port, function(){
     console.log(`Hello world app listening on port ${port}!`)
 })
