@@ -40,7 +40,8 @@ int status = WL_IDLE_STATUS;
 IPAddress server(45,93,137,105);  // numeric IP for Google (no DNS)
 //char server[] = "www.reza.com";    // name address for Reza  (using DNS)
 
-String PATH_NAME = "";
+//String PATH_NAME = "";
+String PATH_NAME = "/update-sensor";
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server
@@ -98,7 +99,7 @@ void setup() {
     //and additional other format: Json, XML, image(for POST request)
     int sensorValue = digitalRead(PIR_MOTION_SENSOR);
     String data = String(sensorValue);
-    data = "?reserved=" + data;
+    data = "?room=1&reserved=" + data;
     //data += "\r\n";
     /*
     // Make a HTTP request:
@@ -120,7 +121,7 @@ void setup() {
     */
 
     //CODE FOR GET REQUEST METHOD
-    client.print("GET " + PATH_NAME + data + " HTTP/1.1\n");
+    client.print("GET " + PATH_NAME + data + " HTTP/1.1\n");      //"GET /update-sensor?room=1&resereved=0 HTTP/1.1"
     client.println("Host: "+String(server));
     client.println("Connection: close");
     client.println(); //end HTTP header
